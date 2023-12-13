@@ -289,6 +289,8 @@
         ),
         
     ]
+    #db.session.add(memberships)
+    #db.session.commit()
 
 
 #Locations
@@ -407,11 +409,12 @@
         ),
 
 
-
-
-
-
     ]
+
+    #db.session.add(locations)
+    #db.session.commit()
+
+
 
 #Holdings
     holdings = [
@@ -438,7 +441,6 @@
         
     ]
 
+    #db.session.add(holdings)
+    #db.session.commit()
 
-
-#add
-#commit session
