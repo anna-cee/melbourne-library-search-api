@@ -14,3 +14,8 @@ class User(db.Model):
 
 
 #create marshamallow scheme to serialise table date into json format
+
+class UserSchema(ma.Schema):
+
+    class Meta:
+        fields = ('id', 'name', 'email', 'location')
