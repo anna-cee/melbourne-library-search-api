@@ -18,7 +18,7 @@ def register():
 
     user = User(
         email=user_info['email'],
-        password #import bcrypt
+        password=bcrypt.generate_password_hash()'#import bcrypt
         name=user_info.get
     )
 

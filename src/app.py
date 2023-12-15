@@ -1,24 +1,14 @@
-from flask import Flask, request
-from flask_sqlalchemy import SQLAlchemy
-from flask_marshmallow import Marshmallow
+from main import app
+from blueprints.cli_bp import db_commands
+from blueprints.users_bp import users_bp
+from blueprints.councils_bp import councils_bp
+from blueprints.memberships_bp import memberships_bp
+from blueprints.librarys_bp import librarys_bp
 
 
-app = Flask(__name__)
+app.register_blueprint(db_commands)
+app.register_blueprint(users_bp)
+app.register_blueprint(councils_bp)
+app.register_blueprint(memberships_bp)
+app.register_blueprint(libraries_bp)
 
-
-#add db key
-
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql+psycopg2://lib_search_dev:GorillaLibrarianFibbs789@127.0.0.1:5432/melb_lib_search_api"
-
-
-db = SQLAlchemy(app)
-ma = Marshmallow(app)
-
-message = 'Hello, world!'
-
-@app.route('/')
-def index():
-    return ('test is okay, 201')
-
-if __name__ == '__main__':
-   app.run(debug=True, port=5000)

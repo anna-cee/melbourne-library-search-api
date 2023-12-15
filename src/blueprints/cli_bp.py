@@ -1,16 +1,25 @@
 
 #check imports
 from flask import Blueprint
-from 
+from app import db, bcrypt
+from models.user import User
+
 
 #connect to blue prints
+db_commands = Blueprint('db', __name__)
 
 #table create function
+@db_commands.cli.command('create')
+def db_create():
+    db.drop_all()
+    db.create_all()
+    print('Created all tables')
 
 #table seed fucntion
     #add table data here
-
-#Users
+@db_commands.cli.command('seed')
+def db_seed():
+    #add users
     users =[
         User(
             email='mary@email.com',

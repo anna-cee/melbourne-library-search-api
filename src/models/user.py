@@ -1,5 +1,5 @@
 #Create Model for users
-
+from marshmallow import fields
 
 #Check imports
 
