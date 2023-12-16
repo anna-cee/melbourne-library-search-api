@@ -9,12 +9,12 @@ memberships_bp = Blueprint('memberships', __name__, url_prefix='/memberships')
 
 
 #get all memberships (of one user)
-@memberships_bp.route('/')
+@memberships_bp.route('/all')
 #@jwt_required()
 def all_memberships():
     #select * from libraries schema
     stmt = db.select(
-        MembershipSchema
+        Membership
         )
     memberships = db.session.scalars(stmt).all()
     return MembershipSchema(many=True).dump(memberships)

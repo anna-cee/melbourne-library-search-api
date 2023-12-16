@@ -8,7 +8,7 @@ from datetime import timedelta
 
 #create blueprint
 
-users_bp = Blueprint('users', __name__)
+users_bp = Blueprint('users', __name__, url_prefix='/users')
 
 #register or create user
 @users_bp.route('/register', methods=['POST'])

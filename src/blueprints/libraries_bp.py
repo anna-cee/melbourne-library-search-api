@@ -18,13 +18,13 @@ def all_libraries():
         Library
         )
     libraries = db.session.scalars(stmt).all()
-    return LibrarySchema().dump(libraries)
+    return LibrarySchema(many=True).dump(libraries)
 
 
 #get libraries close to user locaiton - libraries/near_me
 @libraries_bp.route('/near_me')
 #@jwt_required()
-def all_libraries():
+def libraries_near():
     #select * from libraries schema
     stmt = db.select(
         Library
