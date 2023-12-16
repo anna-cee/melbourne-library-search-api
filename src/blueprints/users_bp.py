@@ -47,7 +47,9 @@ def login():
         #add access token
         token = create_access_token(identity=user.id, expires_delta=timedelta(hours=2))
 # add access token here
-timedelta
 
-
+        return {
+             'token': token,
+             'user': UserSchema(exclude='password').dump(user)
+        }
 # #create a get user route - for who? admin?
