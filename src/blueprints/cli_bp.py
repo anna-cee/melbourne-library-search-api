@@ -16,7 +16,7 @@ from datetime import date
 #connect to blue prints
 db_commands = Blueprint('db', __name__)
 
-#table create function
+#table create 
 @db_commands.cli.command('create')
 def db_create():
     db.drop_all()
@@ -460,4 +460,4 @@ def db_seed():
     db.session.add(holdings)
     db.session.commit()
 
-print('database seeded')
+    print('database seeded')

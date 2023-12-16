@@ -1,0 +1,4 @@
+#FLASK_RUN_Port=#define flask port
+#FLASK_DEBUG=set to true to debug
+#JWT_KEY= enter JWT key here
+#DB_URI=enter connection string here

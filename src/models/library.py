@@ -1,3 +1,4 @@
+
 from marshmallow import fields
 from setup import db, ma 
 
@@ -16,6 +17,5 @@ class Library(db.Model):
 #create marshamallow scheme to serialise table date into json format
 
 class LibrarySchema(ma.Schema):
-
     class Meta:
         fields = ('id', 'name', 'location')

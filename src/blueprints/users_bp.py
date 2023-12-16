@@ -19,7 +19,7 @@ def register():
 
     user = User(
         email=user_info['email'],
-        password=bcrypt.generate_password_hash(user_info['password']).dedcode('uft8'),
+        password=bcrypt.generate_password_hash(user_info['password']).decode('uft8'),
         name=user_info.get('name'),
     )
     

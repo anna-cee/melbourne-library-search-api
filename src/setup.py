@@ -13,19 +13,20 @@ app.config['JWT_KEY'] = environ.get('JWT_KEY')
 
 
 #add db key
-#app.config["SQLALCHEMY_DATABASE_URI"] = environ.get('DB_URI')
-app.config["SQLALCHEMY_DATABASE_URI"] = 'postgresql+psycopg2://lib_search_dev:GorillaLibrarianFibbs789@127.0.0.1:5432/melb_lib_search_api'
+app.config[
+    "SQLALCHEMY_DATABASE_URI"
+] = environ.get('DB_URI')
 
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
 bcrypt = Bcrypt(app)
 jwt = JWTManager(app)
 
-message = 'Hello, world!'
+#message = 'Hello, world!'
 
-@app.route('/')
-def index():
-    return ('test is okay, 201')
+# @app.route('/')
+# def index():
+#     return ('test is okay, 201')
 
-if __name__ == '__main__':
-   app.run(debug=True, port=5000)
+# if __name__ == '__main__':
+#    app.run(debug=True, port=5000)
