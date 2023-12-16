@@ -9,7 +9,6 @@ from models.holding import Holding
 from models.membership import Membership
 from models.library import Library
 from models.location import Location
-#import all models
 from datetime import date
 
 
@@ -24,7 +23,7 @@ def db_create():
     db.create_all()
     print('Created all tables')
 
-#table seed fucntion
+#table seed function
     #add table data here
 @db_commands.cli.command('seed')
 def db_seed():
@@ -50,7 +49,7 @@ def db_seed():
         User(
             email='kendall@email.com',
             name='Kendall Nonfiction',
-            password=bcrypt.generate_password_hash('KendallLovesHistory').decode('utf8'),'dddd',
+            password=bcrypt.generate_password_hash('KendallLovesHistory').decode('utf8'),
             is_admin=False,
             location='East Melbourne',
         ),
@@ -58,7 +57,7 @@ def db_seed():
         User(
             email='alex@email.com',
             name= 'Alex Genre',
-            password = 'dddd',
+            password = bcrypt.generate_password_hash('AlexLoansHorror').decode('utf8'),
             is_admint = True,
             location = 'Fitzroy',
 
@@ -105,7 +104,7 @@ def db_seed():
 
 
 #Libraries
-    librariess = [
+    libraries = [
         Library(
             name= 'City Library',
             location='Melbourne',
@@ -130,12 +129,12 @@ def db_seed():
             name= 'narrm ngarrgu Library and Family Services',
             location='Melbourne',
             #council='City of Melbourne',
-        )
+        ),
         Library(
             name= 'North Melbourne Library',
             location='North Melbourne',
             #council='City of Melbourne',
-        )
+        ),
         Library(
             name= 'Southbank Library',
             location='Southbank',
@@ -171,7 +170,7 @@ def db_seed():
             location='Corner Cotham Road and Civic Drive, Kew VIC 3101',
             #council='Boroondara',
         ),
-        Libarary(
+        Library(
             name='Bargoonga Nganjin, North Fitzroy Library',
             location='182 St Georges Road, North Fitzroy',
             #council='Yarra',
@@ -252,63 +251,62 @@ def db_seed():
             #council='Banyule'
         ),
         Library(
-            name='Ivanhoe Library & Cultural Hub'
+            name='Ivanhoe Library & Cultural Hub',
             location='255 Upper Heidelberg Road, Ivanhoe, 3079'
             #council='Banyule',
         ),
-
     ]
 
-    db.session.add(librarys)
+    db.session.add(libraries)
     db.session.commit()
 
 #Memberships
 
     memberships = [
         Membership(
-            number='1456372'
+            number='1456372',
             #user_id='ss1'
             #council='Banyule'
-            date_created=date
+            #date_created=date,
         ),
         Membership(
-            number='200003483920'
+            number='200003483920',
             #user_id='s1'
             #council="City of Melbourne"
         ),
 
         Membership(
-            number='1289234794'
+            number='1289234794',
             #user_id='s2'
             #council="Yarra
         ),
         Membership(
-            number='1643297'
+            number='1643297',
             #user_id='s2'
             ##council="Merri-bek"
         ),
         Membership(
-            number='20093477834297'
+            number='20093477834297',
             #user_id='s3'
             #council="City of Melbourne"
         ),
         Membership(
-            number='1238803408354'
+            number='1238803408354',
             #user_id='s3'
             #council="Darebin"
         ),
         Membership(
-            number='5473893'
+            number='5473893',
             #user_id='s4'
             #council="Boroondara"
         ),
         Membership(
-            number='123234'
+            number='123234',
             #user_id='sss'
             #council="Banyule"
         ),
-        
     ]
+
     db.session.add(memberships)
     db.session.commit()
 
@@ -316,116 +314,114 @@ def db_seed():
 #Locations
     locations = [
         Location(
-            name='Melbourne',
-            longitude=
-            latitutde=
+            name='Northcote',
+           # latitutde=-37.772202, 
+            #longitude=144.999405,
         ),
         Location(
             name='East Melbourne',
-            longitude=
-            latitutde=
+           # latitutde=-37.8103,
+        
+            #longitude=144.9835
         ),
         Location(
             name='North Melbourne',
-            longitude=
-            latitutde=
+           
         ),
         Location(
             name='Docklands',
-            longitude=
-            latitutde=
+            
         ),
         Location(
             name='Fitzroy',
-            longitude=
-            latitutde=
+           
         ),
         Location(
             name='North Fitzroy',
-            longitude=
-            latitutde=
+            #latitutde=
+            #longitude=
         ),
         Location(
             name='Abbotsford',
-            longitude=
-            latitutde=
+            #latitutde=
+          #  longitude=
         ),
         Location(
             name='Carlton',
-            longitude=
-            latitutde=
+           # latitutde=
+            #longitude=
         ),
         Location(
             name='Collingwood',
-            longitude=
-            latitutde=
+            #latitutde=
+            #longitude=
         ),
         Location(
             name='Brunswick',
-            longitude=
-            latitutde=
+            #latitutde=
+            #longitude=
         ),
         Location(
             name='Brunswick East',
-            longitude=
-            latitutde=
+            #latitutde=
+            #longitude=
         ),
 
         Location(
             name='Coburg',
-            longitude=
-            latitutde=
+            #latitutde=
+            #longitude=
         ),
         Location(
             name='Reservoir',
-            longitude=
-            latitutde=
+            #latitutde=
+            #longitude=
         ),
         Location(
             name='Northcote',
-            longitude=
-            latitutde=
+           # longitude=
+            #latitutde=
         ),
         Location(
             name='Thornbury',
-            longitude=
-            latitutde=
+            #longitude=
+         #   latitutde=
         ),
         Location(
             name='Preston',
-            longitude=
-            latitutde=
+          #  longitude=
+           # latitutde=
         ),
         Location(
             name='Fairfield',
-            longitude=
-            latitutde=
+            #longitude=
+            #latitutde=
         ),Location(
             name='Glenroy',
-            longitude=
-            latitutde=
+            #longitude=
+            #latitutde=
         ),Location(
             name='Fawkner',
-            longitude=
-            latitutde=
+            #longitude=
+            #latitutde=
         ),Location(
             name='Rosanna',
-            longitude=
-            latitutde=
+            #longitude=
+            #latitutde=
         ),Location(
             name='Watsonia',
-            longitude=
-            latitutde=
+            #longitude=
+            #latitutde=
         ),
         Location(
             name='Brunswick West',
-            longitude=
-            latitutde=
+            #longitude=
+            #latitutde=
         ),
         Location(
             name='Richmond',
-            longitude=
-            latitutde=
+            #longitude=
+            #latitutde=
         ),
 
 
@@ -464,3 +460,4 @@ def db_seed():
     db.session.add(holdings)
     db.session.commit()
 
+print('database seeded')

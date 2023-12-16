@@ -13,7 +13,8 @@ app.config['JWT_KEY'] = environ.get('JWT_KEY')
 
 
 #add db key
-app.config["SQLALCHEMY_DATABASE_URI"] = environ.get('DB_URI')
+#app.config["SQLALCHEMY_DATABASE_URI"] = environ.get('DB_URI')
+app.config["SQLALCHEMY_DATABASE_URI"] = 'postgresql+psycopg2://lib_search_dev:GorillaLibrarianFibbs789@127.0.0.1:5432/melb_lib_search_api'
 
 db = SQLAlchemy(app)
 ma = Marshmallow(app)

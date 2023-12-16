@@ -13,7 +13,7 @@ class Holding(db.Model):
 
     #association library primary key
 
-class HoldingSchema(ma.SchemataSchema):
+class HoldingSchema(ma.Schema):
 
     class Meta:
         fields = ('ISBN', 'title', 'author', 'availability')
