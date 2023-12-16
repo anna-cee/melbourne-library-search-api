@@ -1,8 +1,17 @@
 
 #check imports
 from flask import Blueprint
-from app import db, bcrypt
+from setup import db
+from setup import bcrypt
 from models.user import User
+from models.council import Council
+from models.holding import Holding
+from models.membership import Membership
+from models.library import Library
+from models.location import Location
+#import all models
+from datetime import date
+
 
 
 #connect to blue prints
@@ -23,28 +32,27 @@ def db_seed():
     users =[
         User(
             email='mary@email.com',
-            name='Mary Reader'
-            password = 'dddd',
-            is_admint = True,
-            suburb = 'Fitzroy'
+            name='Mary Reader',
+            password=bcrypt.generate_password_hash('MaryReadsBooks').decode('utf8'),
+            is_admin=False,
+            location='Fitzroy',
         ),
 
         User(
             email='jaques@email.com',
             name='Jacques de Livres', 
-            password = 'rrrr',
-            is_admint = True,
-            suburb = 'Coburg'
+            password=bcrypt.generate_password_hash('JacquesAimesDesLivres').decode('utf8'),
+            is_admin=False,
+            location='Coburg',
 
         ),
 
         User(
             email='kendall@email.com',
             name='Kendall Nonfiction',
-            password = 'dddd',
-            is_admint = True,
-            suburb = 'East Melbourne'
-
+            password=bcrypt.generate_password_hash('KendallLovesHistory').decode('utf8'),'dddd',
+            is_admin=False,
+            location='East Melbourne',
         ),
 
         User(
@@ -52,14 +60,14 @@ def db_seed():
             name= 'Alex Genre',
             password = 'dddd',
             is_admint = True,
-            suburb = 'Fitzroy'
+            location = 'Fitzroy',
 
         ),
     ]
 
 
-    #db.session.add(users)
-    #db.session.commit()
+    db.session.add(users)
+    db.session.commit()
 
 #Councils
     councils = [
@@ -69,239 +77,240 @@ def db_seed():
         ),
         Council(
             name="Yarra",
-            email="yarracouncil@email.com"
+            email="yarracouncil@email.com",
         ),
         Council(
             name="Merri-bek",
-            email="merri-bekcouncil@email.com"
+            email="merri-bekcouncil@email.com",
         ),
         Council(
             name="Darebin",
-            email="darebincouncil@email.com"
+            email="darebincouncil@email.com",
         ),
 
         Council(
             name="Banyule",
-            email="banyulecouncil@email.com"
+            email="banyulecouncil@email.com",
         ),
         Council(
             name="Boroondara",
-            email="boroondaracouncil@email.com"
+            email="boroondaracouncil@email.com",
         ),
 
     ]
 
-    #db.session.add(councils)
-    #db.session.commit()
+    db.session.add(councils)
+    db.session.commit()
 
 
 
 #Libraries
-    librarys = [
+    librariess = [
         Library(
             name= 'City Library',
-            suburb='Melbourne',
-            council='City of Melbourne'
+            location='Melbourne',
+            #council='City of Melbourne',
         ),
         Library(
             name= 'East Melbourne Library',
-            suburb='East Melbourne',
-            council='City of Melbourne'
+            location='East Melbourne',
+           # council='City of Melbourne'
         ),
         Library(
             name= 'Kathleen Syme Library and Community Centre',
-            suburb='Carlton',
-            council='City of Melbourne'
+            location='Carlton',
+            #council='City of Melbourne',
         ),
         Library(
             name= 'Library at The Dock',
-            suburb='Docklands',
-            council='City of Melbourne'
+            location='Docklands',
+            #council='City of Melbourne',
         ),
         Library(
             name= 'narrm ngarrgu Library and Family Services',
-            suburb='Melbourne',
-            council='City of Melbourne'
+            location='Melbourne',
+            #council='City of Melbourne',
         )
         Library(
             name= 'North Melbourne Library',
-            suburb='North Melbourne',
-            council='City of Melbourne'
+            location='North Melbourne',
+            #council='City of Melbourne',
         )
         Library(
             name= 'Southbank Library',
-            suburb='Southbank',
-            council='City of Melbourne'
+            location='Southbank',
+            #council='City of Melbourne',
         ),
         Library(
             name='Ashburton Library',
-            suburb='154 High Street, Ashburton VIC 3147',
-            council='Boroondara'
+            location='154 High Street, Ashburton VIC 3147',
+            #council='Boroondara',
         ),
         Library(
             name='Balwyn Library',
-            suburb= '336 Whitehorse Road Balwyn VIC 3103',
-            council='Boroondara'
+            location= '336 Whitehorse Road Balwyn VIC 3103',
+            #council='Boroondara',
         ),
         Library(
             name='Camberwell Library',
-            suburb='340 Camberwell Road, Camberwell VIC 3124',
-            council='Boroondara'
+            location='340 Camberwell Road, Camberwell VIC 3124',
+            #council='Boroondara',
         ),
         Library(
             name='Greythorn Library Lounge',
-            suburb='2 Centre Way, Balwyn North VIC 3104',
-            council='Boroondara'
+            location='2 Centre Way, Balwyn North VIC 3104',
+            #council='Boroondara',
         ),
         Library(
             name='Hawthorn Library',
-            suburb='584 Glenferrie Road, Hawthorn VIC 3122',
-            council='Boroondara'
+            location='584 Glenferrie Road, Hawthorn VIC 3122',
+            #council='Boroondara',
         ),
         Library(
             name='Kew Library',
-            suburb='Corner Cotham Road and Civic Drive, Kew VIC 3101',
-            council='Boroondara'
+            location='Corner Cotham Road and Civic Drive, Kew VIC 3101',
+            #council='Boroondara',
         ),
         Libarary(
             name='Bargoonga Nganjin, North Fitzroy Library',
-            suburb='182 St Georges Road, North Fitzroy',
-            council='Yarra'
+            location='182 St Georges Road, North Fitzroy',
+            #council='Yarra',
         ),
         Library(
             name='Carlton Library',
-            suburb='667 Rathdowne Street, North Carlton'
-            council='Yarra'
+            location='667 Rathdowne Street, North Carlton'
+            #council='Yarra',
         ),
         Library(
             name='Collingwood Library',
-            suburb='11 Stanton Street, Abbotsford',
-            council='Yarra'
+            location='11 Stanton Street, Abbotsford',
+            #council='Yarra',
         ),
         Library(
             name='Fitzroy Library',
-            suburb='128 Moor Street, Fitzroy',
-            council='Yarra'
+            location='128 Moor Street, Fitzroy',
+            #council='Yarra',
         ),
         Library(
             name='Richmond Library',
-            suburb='415 Church Street, Richmond',
-            council='Yarra'
+            location='415 Church Street, Richmond',
+            #council='Yarra',
         ),
         Library(
             name='Brunswick Library',
-            suburb='Corner Sydney Road and Dawson Street, Brunswick',
-            council='Merri-bek'
+            location='Corner Sydney Road and Dawson Street, Brunswick',
+            #council='Merri-bek',
         ),
         Library(
             name='Campbell Turnbull Library',
-            suburb='220 Melville Road, Brunswick West',
-            council='Merri-bek'
+            location='220 Melville Road, Brunswick West',
+            #council='Merri-bek',
         ),
         Library(
             name='Coburg Library',
-            suburb='Corner Victoria and Louisa Streets, Coburg',
-            council='Merri-bek'
+            location='Corner Victoria and Louisa Streets, Coburg',
+            #council='Merri-bek',
         ),
         Library(
             name='Fawkner library',
-            suburb='77 Jukes Road, Fawkner',
-            council='Merri-bek'
+            location='77 Jukes Road, Fawkner',
+            #council='Merri-bek'
         ),
         Library(
             name='Glenroy library',
-            suburb='50 Wheatsheaf Rd, Glenroy',
-            council='Merri-bek'
+            location='50 Wheatsheaf Rd, Glenroy',
+            #council='Merri-bek'
         ),
         Library(
             name='Fairfield Library',
-            suburb='121 Station Street, Fairfield',
-            council='Darebin'
+            location='121 Station Street, Fairfield',
+            #council='Darebin'
         ),
         Library(
             name='Northcote Library',
-            suburb='32-38 Separation Street, Northcote',
-            council='Darebin'
+            location='32-38 Separation Street, Northcote',
+            #council='Darebin'
         ),
         Library(
             name='Preston Library',
-            suburb='266 Gower Street, Preston',
-            council='Darebin'
+            location='266 Gower Street, Preston',
+            #council='Darebin'
         ),
         Library(
             name='Reservoir Library',
-            suburb='23 Edwardes Street, Reservoir',
-            council='Darebin'
+            location='23 Edwardes Street, Reservoir',
+            #council='Darebin'
         ),
         Library(
             name='Watsonia Library',
-            suburb='4 Ibbottson Street, Watsonia, 3087',
-            council='Banyule'
+            location='4 Ibbottson Street, Watsonia, 3087',
+            #council='Banyule'
         ),
         Library(
             name='Rosanna Library',
-            suburb='72 Turnham Ave, Rosanna, 3084'
-            council='Banyule'
+            location='72 Turnham Ave, Rosanna, 3084'
+            #council='Banyule'
         ),
         Library(
             name='Ivanhoe Library & Cultural Hub'
-            suburb='255 Upper Heidelberg Road, Ivanhoe, 3079'
-            council='Banyule',
+            location='255 Upper Heidelberg Road, Ivanhoe, 3079'
+            #council='Banyule',
         ),
 
     ]
 
-    #db.session.add(librarys)
-    #db.session.commit()
+    db.session.add(librarys)
+    db.session.commit()
 
 #Memberships
 
     memberships = [
         Membership(
             number='1456372'
-            user_id='ss1'
-            council='Banyule'
+            #user_id='ss1'
+            #council='Banyule'
+            date_created=date
         ),
         Membership(
             number='200003483920'
-            user_id='s1'
-            council="City of Melbourne"
+            #user_id='s1'
+            #council="City of Melbourne"
         ),
 
         Membership(
             number='1289234794'
-            user_id='s2'
-            council="Yarra
+            #user_id='s2'
+            #council="Yarra
         ),
         Membership(
             number='1643297'
-            user_id='s2'
-            council="Merri-bek"
+            #user_id='s2'
+            ##council="Merri-bek"
         ),
         Membership(
             number='20093477834297'
-            user_id='s3'
-            council="City of Melbourne"
+            #user_id='s3'
+            #council="City of Melbourne"
         ),
         Membership(
             number='1238803408354'
-            user_id='s3'
-            council="Darebin"
+            #user_id='s3'
+            #council="Darebin"
         ),
         Membership(
             number='5473893'
-            user_id='s4'
-            council="Boroondara"
+            #user_id='s4'
+            #council="Boroondara"
         ),
         Membership(
             number='123234'
-            user_id='sss'
-            council="Banyule"
+            #user_id='sss'
+            #council="Banyule"
         ),
         
     ]
-    #db.session.add(memberships)
-    #db.session.commit()
+    db.session.add(memberships)
+    db.session.commit()
 
 
 #Locations
@@ -422,8 +431,8 @@ def db_seed():
 
     ]
 
-    #db.session.add(locations)
-    #db.session.commit()
+    db.session.add(locations)
+    db.session.commit()
 
 
 
@@ -452,6 +461,6 @@ def db_seed():
         
     ]
 
-    #db.session.add(holdings)
-    #db.session.commit()
+    db.session.add(holdings)
+    db.session.commit()
 

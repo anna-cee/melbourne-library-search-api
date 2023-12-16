@@ -1,4 +1,5 @@
-#Check imports
+from marshmallow import fields
+from setup import db, ma 
 
 #Create holdings table
 
