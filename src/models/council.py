@@ -12,11 +12,13 @@ class Council(db.Model):
     password = db.Column(db.String, nullable=False, default='12345678')
     is_admin = db.Column(db.Boolean, default=False)
     
-
+    #reciprocated associations
+    membership = db.relationship('Membership', back_populates='councils')
+    libraries = db.relationship('Library', back_populates='councils')
 
 #create marshamallow scheme to serialise table date into json format
 
 class CouncilSchema(ma.Schema):
 
     class Meta:
-        fields = ('id', 'name', 'email', 'is_admin','location')
+        fields = ('id', 'name', 'email', 'is_admin')

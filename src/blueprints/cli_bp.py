@@ -23,6 +23,9 @@ def db_create():
     db.create_all()
     print('Created all tables')
 
+    
+    db.session.commit()
+
 #table seed function
     #add table data here
 @db_commands.cli.command('seed')
@@ -58,14 +61,13 @@ def db_seed():
             email='alex@email.com',
             name= 'Alex Genre',
             password = bcrypt.generate_password_hash('AlexLoansHorror').decode('utf8'),
-            is_admint = True,
+            is_admin = True,
             location = 'Fitzroy',
 
         ),
     ]
 
-
-    db.session.add(users)
+    db.session.add_all(users)
     db.session.commit()
 
 #Councils
@@ -96,9 +98,9 @@ def db_seed():
             email="boroondaracouncil@email.com",
         ),
 
-    ]
+   ]
 
-    db.session.add(councils)
+    db.session.add_all(councils)
     db.session.commit()
 
 
@@ -247,17 +249,17 @@ def db_seed():
         ),
         Library(
             name='Rosanna Library',
-            location='72 Turnham Ave, Rosanna, 3084'
+            location='72 Turnham Ave, Rosanna, 3084',
             #council='Banyule'
         ),
         Library(
             name='Ivanhoe Library & Cultural Hub',
-            location='255 Upper Heidelberg Road, Ivanhoe, 3079'
+            location='255 Upper Heidelberg Road, Ivanhoe, 3079',
             #council='Banyule',
         ),
-    ]
+   ]
 
-    db.session.add(libraries)
+    db.session.add_all(libraries)
     db.session.commit()
 
 #Memberships
@@ -265,49 +267,57 @@ def db_seed():
     memberships = [
         Membership(
             number='1456372',
+            date_created='2011-01-01',
             #user_id='ss1'
             #council='Banyule'
             #date_created=date,
         ),
         Membership(
-            number='200003483920',
+            number='2000034839',
+            date_created='2015-01-01',
             #user_id='s1'
             #council="City of Melbourne"
         ),
 
         Membership(
             number='1289234794',
+            date_created='2020-02-05'
             #user_id='s2'
             #council="Yarra
         ),
         Membership(
             number='1643297',
+            date_created='2019-08-09'
             #user_id='s2'
             ##council="Merri-bek"
         ),
         Membership(
-            number='20093477834297',
+            number='2009347783',
             #user_id='s3'
+            date_created='2000-08-20'
             #council="City of Melbourne"
         ),
         Membership(
-            number='1238803408354',
+            number='123880340',
+            date_created='2005-05-02',
             #user_id='s3'
             #council="Darebin"
         ),
         Membership(
             number='5473893',
+            date_created='2010-10-15',
             #user_id='s4'
             #council="Boroondara"
         ),
         Membership(
             number='123234',
+            date_created='2007-09-22',
             #user_id='sss'
             #council="Banyule"
         ),
     ]
 
-    db.session.add(memberships)
+    db.session.add_all(memberships)
     db.session.commit()
 
 
@@ -321,16 +331,13 @@ def db_seed():
         Location(
             name='East Melbourne',
            # latitutde=-37.8103,
-        
             #longitude=144.9835
         ),
         Location(
-            name='North Melbourne',
-           
+            name='North Melbourne',   
         ),
         Location(
-            name='Docklands',
-            
+            name='Docklands',   
         ),
         Location(
             name='Fitzroy',
@@ -423,11 +430,9 @@ def db_seed():
             #longitude=
             #latitutde=
         ),
-
-
     ]
 
-    db.session.add(locations)
+    db.session.add_all(locations)
     db.session.commit()
 
 
@@ -437,27 +442,32 @@ def db_seed():
         Holding(
             ISBN='9780399226908',
             title='The Very Hungry Catepillar',
-            author='Eric Carle'
+            author='Eric Carle',
+            availability=True,
         ),
         Holding(
             ISBN='9781787633735',
             title='Better Off Dead',
-            author='Lee Child'
+            author='Lee Child',
+            availability=True,
         ),
         Holding(
-            ISBN='9780241444184',
-            title='Scandal of the century and other writings',
-            author='Gabriel García Márquez'
+            ISBN='9781526660312',
+            title='The Wind Knows my Name',
+            author='Isabel Allende',
+            availability=True,
         ),
         Holding(
             ISBN='9781338893076',
             title='The Official Harry Potter Cookbook',
-            author='Joanna Farrow'
+            author='Joanna Farrow',
+            availability=True,
         ),
         
     ]
 
-    db.session.add(holdings)
+
+    db.session.add_all(holdings)
     db.session.commit()
 
     print('database seeded')

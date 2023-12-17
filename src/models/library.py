@@ -11,7 +11,15 @@ class Library(db.Model):
     name = db.Column(db.String, nullable=False)
     location = db.Column(db.String, nullable=False)
 
-    #association with council
+    #Association with council_id
+    council_id = db.Column(db.Integer, db.ForeignKey('councils.id'), nullable=False)
+    user = db.relationship('Council', back_populates='libraries')
+    #Association with location
+    location_id = db.Column(db.String, db.ForeignKey('locations.id_seq'), nullable=False)
+    location = db.relationship('Location', back_populates='libraries')
+    holdings = db.relationship('Holdings', back_populates='libraries')
+
+
 
 
 #create marshamallow scheme to serialise table date into json format

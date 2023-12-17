@@ -3,7 +3,7 @@ from marshmallow import fields
 from setup import db, ma 
 
 
-#Define model(table) for users
+#Define model(table) for users with User class
 class User(db.Model):
     __tablename__ = "users"
 
@@ -15,7 +15,11 @@ class User(db.Model):
     is_admin = db.Column(db.Boolean, default=False)
     location = db.Column(db.String, nullable=True)
 
-    #add associations
+    #assocations with locations table
+    location_id = db.Column(db.String, db.ForeignKey('locations.id_seq'), nullable=False)
+    location = db.relationship('Location', back_populates='users')
+    membership = db.relationship('Membership', back_populates='users')
+    
 
 
 
