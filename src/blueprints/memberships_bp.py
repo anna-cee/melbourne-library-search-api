@@ -41,7 +41,7 @@ def update_membership(id):
 @memberships_bp.route('/delete/<int:id>', methods=['DELETE'])
 @jwt_required()
 def delete_membership(id):
-    stmt = db.select(Membership).filter_by(id=id).where(Membership.id == number)
+    stmt = db.select(Membership).filter_by(id=id).where(Membership.id == membership.number)
     membership = db.session.scalar(stmt)
     if membership:
         authorise(membership.user_id)
