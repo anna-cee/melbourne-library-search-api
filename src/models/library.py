@@ -13,17 +13,15 @@ class Library(db.Model):
 
     #Association with council_id
     council_id = db.Column(db.Integer, db.ForeignKey('councils.id'), nullable=False)
-    user = db.relationship('Council', back_populates='libraries')
+    council = db.relationship('Council', back_populates='libraries')
     #Association with location
-    location_id = db.Column(db.String, db.ForeignKey('locations.id_seq'), nullable=False)
+    location_id = db.Column(db.Integer, db.ForeignKey('locations.id'), nullable=False)
     location = db.relationship('Location', back_populates='libraries')
-    holdings = db.relationship('Holdings', back_populates='libraries')
-
-
+    #holdings = db.relationship('Holdings', back_populates='libraries')
 
 
 #create marshamallow scheme to serialise table date into json format
-
 class LibrarySchema(ma.Schema):
+    council = fields.Nested('CouncilSchema')
     class Meta:
         fields = ('id', 'name', 'location')

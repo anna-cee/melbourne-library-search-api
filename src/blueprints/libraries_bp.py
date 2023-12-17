@@ -10,27 +10,17 @@ libraries_bp = Blueprint('libraries', __name__, url_prefix='/libraries')
 
 
 #get all libraries
-@libraries_bp.route('/all')
+@libraries_bp.route('/')
 #@jwt_required()
 def all_libraries():
     #select * from libraries schema
     stmt = db.select(
         Library
         )
-    libraries = db.session.scalars(stmt).all()
+    libraries = db.session.scalar(stmt).all()
     return LibrarySchema(many=True).dump(libraries)
 
 
-#get libraries close to user locaiton - libraries/near_me
-@libraries_bp.route('/near_me')
-#@jwt_required()
-def libraries_near():
-    #select * from libraries schema
-    stmt = db.select(
-        Library
-        )
-    libraries = db.session.scalars(stmt).all() #where Library.location == xxx
-    return LibrarySchema(many=True).dump(libraries)
 
 
 

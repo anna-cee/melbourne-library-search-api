@@ -10,26 +10,24 @@ from datetime import timedelta
 
 councils_bp = Blueprint('councils', __name__, url_prefix='/councils')
 
-#register or create council
+#register or create council/member
 @councils_bp.route('/register', methods=['POST'])
 #@jwt_required
 def register():
     authorise()
     council_info = CouncilSchema.load(request.json)
-
     council = Council(
         email=council_info['email'],
         password=bcrypt.generate_password_hash(council_info['password']).decode('uft8'),
         name=council_info.get('name'),
     )
-    
-    
 
-#     #get new council to db
+
+    #get new council to db
     db.session.add(council)
     db.session.commit()
 
-#     #confirm successful add 
+    #confirm successful add 
     return CouncilSchema(exclude=['password']).dump(council), 201
 
 
@@ -46,10 +44,23 @@ def login():
     if council and bcrypt.check_password_hash(council.passowrd, council_info['password']):
         #add access token
         token = create_access_token(identity=council.id, expires_delta=timedelta(hours=2))
-# add access token here
 
+        #return login permissions
         return {
              'token': token,
              'council': CouncilSchema(exclude='password').dump(council)
         }
-# #create a get council route - for who? admin?
+
+
+
+#get all councils
+@councils_bp.route("/")
+#@jwt_required()
+def all_councils():
+    # select * from cards;
+    stmt = db.select(
+        Council
+    ) 
+    councils = db.session.scalars(stmt).all()
+    return CouncilSchema(many=True, exclude=[councils.id]).dump(councils)
+    

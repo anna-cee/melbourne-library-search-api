@@ -27,7 +27,7 @@ def db_create():
     db.session.commit()
 
 #table seed function
-    #add table data here
+    #add table data here 
 @db_commands.cli.command('seed')
 def db_seed():
     #add users

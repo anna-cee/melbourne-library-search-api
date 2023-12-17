@@ -14,8 +14,8 @@ class Location(db.Model):
     #longitude = db.Column(db.Float), nullable=False
 
     #assocations reciprocated
-    users = db.relationship('User', back_populates='locations')
-    libraries = db.relationship('Library', back_populates='locations')
+    #users = db.relationship('User', back_populates='locations')
+    #libraries = db.relationship('Library', back_populates='locations')
 #create marshamallow scheme to serialise table date into json format
 
 class LocationSchema(ma.Schema):

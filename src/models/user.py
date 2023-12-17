@@ -16,9 +16,9 @@ class User(db.Model):
     location = db.Column(db.String, nullable=True)
 
     #assocations with locations table
-    location_id = db.Column(db.String, db.ForeignKey('locations.id_seq'), nullable=False)
+    location_id = db.Column(db.Integer, db.ForeignKey('locations.id'), nullable=False)
     location = db.relationship('Location', back_populates='users')
-    membership = db.relationship('Membership', back_populates='users')
+    #membership = db.relationship('Membership', back_populates='users')
     
 
 

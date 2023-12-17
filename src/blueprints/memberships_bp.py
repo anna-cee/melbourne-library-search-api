@@ -40,7 +40,7 @@ def update_membership(id):
     membership = db.session.scalar(stmt)
     if membership:
         authorise(membership.user_id)
-        membership.membership_number = membership_info.get('number', membership.membership_number)
+        membership.number = membership_info.get('number', membership.number)
         db.session.commit()
         return MembershipSchema().dump(membership)
     else:

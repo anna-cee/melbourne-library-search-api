@@ -17,7 +17,6 @@ class Council(db.Model):
     libraries = db.relationship('Library', back_populates='councils')
 
 #create marshamallow scheme to serialise table date into json format
-
 class CouncilSchema(ma.Schema):
 
     class Meta:
