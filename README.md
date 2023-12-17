@@ -33,54 +33,63 @@ Finally, it provides structure which increases security by allowing the programm
 
 ### R5 Document all endpoints for your API
 
-'/users/register' (OPTIONS, POST)
-   '/users/login' (OPTIONS, POST)
-   '/users/' (HEAD, OPTIONS, GET)
-   '/councils/register' (OPTIONS, POST) 
-   '/councils/login' (OPTIONS, POST)
-   '/councils/' (HEAD, OPTIONS, GET)
-   '/memberships/all' (HEAD, OPTIONS, GET) 
-   '/memberships/update/<id>' (OPTIONS, PATCH, PUT)
-   '/memberships/delete/<id>' (DELETE, OPTIONS)
-   '/libraries/' (HEAD, OPTIONS, GET) -
-   ‘/holdings/title/<id>’ (HEAD, OPTIONS, POST, GET)
-   ‘/holdings/author/<id>' (HEAD, OPTIONS, POST, GET)
+- '/users/register' (OPTIONS, POST)
+- '/users/login' (OPTIONS, POST)
+- '/users/' (HEAD, OPTIONS, GET)
+- '/councils/register' (OPTIONS, POST) 
+- '/councils/login' (OPTIONS, POST)
+- '/councils/' (HEAD, OPTIONS, GET)
+- '/memberships/all' (HEAD, OPTIONS, GET) 
+- '/memberships/update/<id>' (OPTIONS, PATCH, PUT)
+- '/memberships/delete/<id>' (DELETE, OPTIONS)
+- '/libraries/' (HEAD, OPTIONS, GET) -
+- ‘/holdings/title/<id>’ (HEAD, OPTIONS, POST, GET)
+- ‘/holdings/author/<id>' (HEAD, OPTIONS, POST, GET)
 
 ### R6 An ERD for your app
 
+![ERD](docs/ERD-library.png)
 
-
-R7 Detail any third party services that your app will use (packages)
+### R7 Detail any third party services that your app will use (packages)
 
 Marshmallow - serialise data incoming and outgoing to json output
 JWT - Json Web Token to encrypt and create session login token - authenticate user login.
 BCrypt -for generating user password hash encryption.
 
 
-R8 Describe your projects models in terms of the relationships they have with each other
+### R8 Describe your projects models in terms of the relationships they have with each other
 
 users - defines the users of the api, allows them to log in
-councils - defines councils as a separate category of user. Councils also give memberships and run libraries.
+councils - defines councils as a separate category of user. councils also give memberships and run libraries.
 libraries - lists all the library locations for the councils in the region.
 memberships - lists a users existing memberships 
 locations - lists the relevant locations
 
 
 
+### R9 Discuss the database relations to be implemented in your application
+
+- Users > memberships is a one to many relation where one user can have multiple memberships.
+- Memberships > councils is a one to one relation where each council can only generate one membership per user
+- Libraries > councils is a one to many relation where councils have multiple library branches
+- libraries > holdings is a many to many relation where one library branch will have multiple holdings and one holding may exist as multiple copies across multiple branches.
+ -locations>libraries is a one to one relation with each library existing at one location (no mobile libraries)
+- location>users is a one to one relation with each user residing at one location at a time
 
 
-R9 Discuss the database relations to be implemented in your application
-
-Users > memberships is a one to many relation where one user can have multiple memberships.
-Memberships > councils is a one to one relation where each council can only generate one membership per user
-Libraries > councils is a one to many relation where councils have multiple library branches
-libraries > holdings is a many to many relation where one library branch will have multiple holdings and one holding may exist as multiple copies across multiple branches.
-locations>libraries is a one to one relation with each library existing at one location (no mobile libraries)
-location>users is a one to one relation with each user residing at one location at a time
-
-
-R10 Describe the way tasks are allocated and tracked in your project
+### R10 Describe the way tasks are allocated and tracked in your project
 
 
 I used a Trello board to map the steps of the project. I tried to map out all the steps of the task beforehand - that I could foresee. Then I went through each step using DOING or DONE labels to show progress. I used a UP TO HERE marker to know where to recommence my project. I updated the cards on my Trello board as I needed to add or remove steps. 
+
 The approach wasn’t completely inline with an agile framework - it was more like a big scrum sprint with everything mapped , but then more like a Kanban with just a doing, done, to do status for each task and tasks being reviewed as the project progressed.
+
+![Trello Start](docs/trello-plan-start.png)
+
+![Trello first](docs/trello-ERD-first-iteration.png)
+
+![trello routes](docs/trello-routes.png)
+
+![trello auth](docs/trello-auth-auth.png)
+
+![trello final](docs/trello-final.png)
