@@ -46,3 +46,19 @@ def update_membership(id):
     else:
         return {'error': 'Invalid membership update'}, 404
 
+
+#Delete a membership
+    
+@memberships_bp.route('/<int:id>', methods=['DELETE'])
+@jwt_required()
+def delete_membership(id):
+    stmt = db.select(Membership).filter_by(id=id).where(Membership.id == number)
+    membership = db.session.scalar(stmt)
+    if membership:
+        authorise(membership.user_id)
+        db.session.delete(membership)
+        db.session.commit()
+        return {}, 200
+    else:
+        return {'error': 'Membership not deleted'}, 404
+
