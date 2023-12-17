@@ -20,19 +20,8 @@ def all_memberships():
     return MembershipSchema(many=True).dump(memberships)
 
 
-#get one membership
-@memberships_bp.route('/<int:id>')
-@jwt_required()
-def one_membership(id):
-    stmt = db.select(Membership).filter_by(id=id)
-    membership = db.session.scalar(stmt)
-    if membership:
-        return MembershipSchema().dump(membership)
-    else:
-        return {'error': 'Membership details not found'}, 404
-
 #update one membership
-@memberships_bp.route('/<int:id>', methods=['PUT', 'PATCH'])
+@memberships_bp.route('/update/<int:id>', methods=['PUT', 'PATCH'])
 @jwt_required()
 def update_membership(id):
     membership_info = MembershipSchema().load(request.json)
@@ -49,7 +38,7 @@ def update_membership(id):
 
 #Delete a membership
     
-@memberships_bp.route('/<int:id>', methods=['DELETE'])
+@memberships_bp.route('/delete/<int:id>', methods=['DELETE'])
 @jwt_required()
 def delete_membership(id):
     stmt = db.select(Membership).filter_by(id=id).where(Membership.id == number)

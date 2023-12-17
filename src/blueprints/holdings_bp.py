@@ -7,7 +7,7 @@ from setup import bcrypt, db
 #find a holding
 holdings_bp = Blueprint('holdings', __name__, url_prefix='/holdings')
 
-@holdings_bp.route('/<int:id>', methods=['GET', 'POST'])
+@holdings_bp.route('/title/<int:id>', methods=['GET', 'POST'])
 @jwt_required()
 def find_title(id):
     stmt = db.select(Holding).filter_by(id=id).where(Holding.title == id)
@@ -17,7 +17,7 @@ def find_title(id):
     else:
          return {'error': 'Title not found'}, 404
     
-@holdings_bp.route('/<int:id>', methods=['GET', 'POST'])
+@holdings_bp.route('/author/<int:id>', methods=['GET', 'POST'])
 @jwt_required()
 def find_author(id):
     stmt = db.select(Holding).filter_by(id=id).where(Holding.author == id)
